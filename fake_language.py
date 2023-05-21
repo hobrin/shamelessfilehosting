@@ -63,10 +63,10 @@ if not choice == "n": #encode
 
 else: #decode
 	mask = input("The masked text:")
-	if os.path.exists(hidden) and os.path.isfile(hidden):
+	if os.path.exists(mask) and os.path.isfile(mask):
 		path = mask
-		with open(path, "r") as f:
-			mask = f.read()
+		with open(path, "rb") as f:
+			mask = f.read().decode()
 		print(f"Succesfully read file: {path}")
 	bits = []
 	for c in mask:
@@ -90,22 +90,22 @@ else: #decode
 				bits.append(False)
 				idx -= middle
 				letters = letters[middle:]
-	for i in range(0, len(bits)-8, 8):
-		flag = True
-		for j in range(0, 8):
-			if bits[i + j]:
-				flag = False
-				break
-		if flag:
-			bits = bits[:i]
-			break
+	# for i in range(0, len(bits)-8, 8):
+	# 	flag = True
+	# 	for j in range(0, 8):
+	# 		if bits[i + j]:
+	# 			flag = False
+	# 			break
+	# 	if flag:
+	# 		bits = bits[:i]
+	# 		break
 
-	out = bitarray.bitarray(bits).tobyes()
+	out = bitarray.bitarray(bits).tobytes()
 	
 	if len(out) < 10_000:
 		print(out.decode())
 	else:
-		print(f"{len(out.decode())} characters. Too much to display.")
+		print(f"{len(out)} characters. Too much to display.")
 
 	outFile = input("Output file name; press enter for no file")
 	if not outFile == "":
