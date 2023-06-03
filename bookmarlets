@@ -1,0 +1,6 @@
+Bookmarklets are bookmarks that are actually js that will be executed once you click on it as if it is on the current webpage.
+They start with 'javascript:' and then the js follows, save it as if it is a url.
+
+Go to the web archive:
+javascript:location.replace("https://web.archive.org/web/20230000000000*/"+window.location.href)
+
